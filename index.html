@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tabla de Reputación</title>
+  <script src="app2.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    tr:hover {
+      background-color: #f5f5f5;
+    }
+  </style>
+</head>
+<body>
+
+<table border="1">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Reputación Original</th>
+      <th>Nueva Reputación</th>
+      <th>Diferencia</th>
+    </tr>
+  </thead>
+  <tbody id="tablaBody"></tbody>
+</table>
+
+<script>
+  function cargarDatos() {
+    // Cambia la ruta del archivo según su ubicación
+    fetch('resultado_resta.json')
+      .then(response => response.json())
+      .then(data => {
+        construirTabla(data);
+      })
+      .catch(error => console.error('Error al cargar el archivo JSON', error));
+  }
+
+  function construirTabla(datos) {
+    var tablaBody = document.getElementById('tablaBody');
+
+    datos.forEach(function (fila) {
+      var tr = document.createElement('tr');
+
+      // Crear celdas y agregar datos
+      var tdNombre = document.createElement('td');
+      tdNombre.textContent = fila.Nombre;
+      tr.appendChild(tdNombre);
+
+      var tdReputacionOriginal = document.createElement('td');
+      tdReputacionOriginal.textContent = fila["Reputacion Original"];
+      tr.appendChild(tdReputacionOriginal);
+
+      var tdNuevaReputacion = document.createElement('td');
+      tdNuevaReputacion.textContent = fila["Nueva Reputacion"];
+      tr.appendChild(tdNuevaReputacion);
+
+      var tdDiferencia = document.createElement('td');
+      tdDiferencia.textContent = fila.Diferencia;
+      tr.appendChild(tdDiferencia);
+
+      tablaBody.appendChild(tr);
+    });
+  }
+
+  cargarDatos();
+</script>
+
+</body>
+</html>
