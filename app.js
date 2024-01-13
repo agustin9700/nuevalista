@@ -32,7 +32,7 @@ async function extraerDatosYGuardarJson(url, nombreArchivo) {
 }
 
 async function ejecutarProcesoVariasVeces() {
-    const url = 'https://ninjakaizen.com/clan/215';
+    const url = 'https://ninjakaizen.com/clan/149';
 
     for (let i = 0; i < 999; i++) {
         const nombres = ['datos.json', 'newdatos.json'];
