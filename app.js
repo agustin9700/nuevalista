@@ -20,7 +20,7 @@ async function extraerDatosYGuardarJson(url, nombreArchivo) {
         const response = await axios.get(url);
         const $ = cheerio.load(response.data);
         const datos = $('tbody tr:has(td:nth-child(4))').map((_, row) => ({
-            Nombre: $(row).find('td:nth-child(1)').text().trim(),
+            Nombre: $(row).find('td:nth-child(2)').text().trim(),
             Reputacion: parseInt($(row).find('td:nth-child(4)').text().trim()) || 0
         })).get();
 
