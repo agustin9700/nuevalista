@@ -19,9 +19,9 @@ async function extraerDatosYGuardarJson(url, nombreArchivo) {
     try {
         const response = await axios.get(url);
         const $ = cheerio.load(response.data);
-        const datos = $('tbody tr:has(td:nth-child(3))').map((_, row) => ({
+        const datos = $('tbody tr:has(td:nth-child(4))').map((_, row) => ({
             Nombre: $(row).find('td:nth-child(1)').text().trim(),
-            Reputacion: parseInt($(row).find('td:nth-child(3)').text().trim()) || 0
+            Reputacion: parseInt($(row).find('td:nth-child(4)').text().trim()) || 0
         })).get();
 
         fs.writeFileSync(nombreArchivo, JSON.stringify(datos, null, 2), 'utf-8');
@@ -32,7 +32,7 @@ async function extraerDatosYGuardarJson(url, nombreArchivo) {
 }
 
 async function ejecutarProcesoVariasVeces() {
-    const url = 'https://ninjalegends.net/detail_clan.php?clan_id=113';
+    const url = 'https://ninjakaizen.com/clan/101';
 
     for (let i = 0; i < 999; i++) {
         const nombres = ['datos.json', 'newdatos.json'];
