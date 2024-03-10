@@ -41,7 +41,7 @@ async function ejecutarProcesoVariasVeces() {
         await extraerDatosYGuardarJson(url, nombreArchivoDatos);
         console.log(`Ejecución ${i + 1} (${nombreArchivoDatos}) completa.`);
 
-        await new Promise(resolve => setTimeout(resolve, 10000));
+        await new Promise(resolve => setTimeout(resolve, 60000));
 
         await extraerDatosYGuardarJson(url, nombreArchivoNewDatos);
         console.log(`Ejecución ${i + 1} (${nombreArchivoNewDatos}) completa.`);
