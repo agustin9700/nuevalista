@@ -19,7 +19,7 @@ async function extraerDatosYGuardarJson(url, nombreArchivo) {
 }
 
 async function ejecutarProcesoVariasVeces() {
-    const url = 'https://ninjakaizen.com/clan/215';
+    const url = 'https://ninjakaizen.com/clan/101';
 
     for (let i = 0; i < 999; i++) {
         const nombres = ['datos.json', 'newdatos.json'];
@@ -36,9 +36,10 @@ async function ejecutarProcesoVariasVeces() {
         const datos = JSON.parse(fs.readFileSync(nombreArchivoDatos, 'utf-8'));
         const newDatos = JSON.parse(fs.readFileSync(nombreArchivoNewDatos, 'utf-8'));
         const resultadoResta = datos.map((dato, index) => ({
+            id: index + 1,
             Nombre: dato.Nombre,
-            'Reputacion Original': dato.Reputacion,
-            'Nueva Reputacion': newDatos[index].Reputacion,
+            'ReputacionOriginal': dato.Reputacion,
+            'NuevaReputacion': newDatos[index].Reputacion,
             'Diferencia': newDatos[index].Reputacion - dato.Reputacion,
         }));
 
@@ -47,4 +48,4 @@ async function ejecutarProcesoVariasVeces() {
     }
 }
 
-ejecutarProcesoVariasVeces();
+module.exports ={ejecutarProcesoVariasVeces} 
